@@ -151,10 +151,9 @@ describe('HttpNode integration request/response cycles', () => {
         body: JSON.stringify({ state: 'updated' }),
       }),
     ]);
-    expect(mockFetch.mock.calls[1]).toEqual([
-      target,
-      expect.not.objectContaining({ body: expect.anything() }),
-    ]);
+    const deleteRequest = mockFetch.mock.calls[1];
+    expect(deleteRequest[0]).toBe(target);
+    expect(deleteRequest[1]).not.toHaveProperty('body');
     expect(putOutput.body).toEqual({ id: 7, state: 'updated' });
     expect(deleteOutput).toEqual({
       status: 204,
