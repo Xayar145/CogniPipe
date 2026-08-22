@@ -80,7 +80,7 @@ export class HttpNode extends BaseNode {
         headers,
         signal: controller.signal,
       } as NonNullable<Parameters<typeof fetch>[1]>;
-      if (method !== 'GET' && method !== 'DELETE' && body !== undefined) {
+      if (method !== 'GET' && body !== undefined) {
         fetchOptions.body = body;
       }
 
